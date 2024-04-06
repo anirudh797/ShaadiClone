@@ -5,6 +5,9 @@
     <string name="name">Name :</string>
     <string name="id">Id :</string>
     <string name="userName">%1$s %2$s</string>
+    <string name="accepted">ACCEPTED</string>
+    <string name="declined">DECLINED</string>
+    <string name="retry">No Profiles Available. Please retry</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="image">image</string>

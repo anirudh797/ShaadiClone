@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 
 @Database(entities = [EntityProfileInfo::class], version = 1)
 abstract class UserMatchesDb : RoomDatabase() {
-    abstract fun ItemInfoDao(): ProfileInfoDao
+    abstract fun profilesDao(): ProfileInfoDao
 
     companion object {
         @Volatile

@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import com.anirudh.shaadi.data.model.ProfileStatus
+import com.anirudh.shaadi.data.entity.ProfileStatus
 
 @Entity(tableName = "profile_info")
 @TypeConverters(Converters::class)
@@ -13,8 +13,10 @@ data class EntityProfileInfo(
     val userName: String,
     @ColumnInfo(name = "image_url")
     val imageUrl: String,
-    @ColumnInfo(name = "name")
-    val name: String,
+    @ColumnInfo(name = "firstName")
+    val firstName: String,
+    @ColumnInfo(name = "lastName")
+    val lastName: String,
     @ColumnInfo(name = "gender")
     val gender: String,
     @ColumnInfo(name = "country")

@@ -5,7 +5,6 @@ plugins {
 
 }
 
-
 android {
     namespace = "com.anirudh.shaadi"
     compileSdk = 34
@@ -91,6 +90,4 @@ dependencies {
     /* Dagger2 - default dependency */
     kapt("com.google.dagger:dagger-compiler:2.17")
 
-
-    /* Dagger2 - default dependency */
 }

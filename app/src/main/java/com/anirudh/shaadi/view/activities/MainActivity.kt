@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.anirudh.shaadi.R
 import com.anirudh.shaadi.databinding.ActivityMainBinding
-import com.anirudh.shaadi.view.fragments.MainFragment
-import com.anirudh.shaadi.usecase.viewModel.SearchViewModel
+import com.anirudh.shaadi.view.fragments.ProfileFragment
+import com.anirudh.shaadi.usecase.viewModel.ProfileViewModel
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -20,12 +20,12 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private lateinit var viewModel: SearchViewModel
+    private lateinit var viewModel: ProfileViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
-        val fragment: MainFragment = MainFragment.newInstance()
+        val fragment: ProfileFragment = ProfileFragment.newInstance()
 
         // for passing data to fragment
         val bundle = Bundle()
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
                 .add(R.id.fcv, fragment, "main_fragment")
                 .commit()
         }
-        viewModel = ViewModelProvider(this, viewModelFactory)[SearchViewModel::class.java]
+        viewModel = ViewModelProvider(this, viewModelFactory)[ProfileViewModel::class.java]
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupClickListeners()

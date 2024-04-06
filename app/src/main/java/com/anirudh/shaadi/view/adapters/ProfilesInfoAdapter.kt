@@ -1,11 +1,14 @@
 package com.anirudh.shaadi.view.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.anirudh.shaadi.R
-import com.anirudh.shaadi.data.model.ProfileInfo
+import com.anirudh.shaadi.data.entity.ProfileInfo
+import com.anirudh.shaadi.data.entity.ProfileStatus
 import com.anirudh.shaadi.databinding.UserProfileItemBinding
 import com.bumptech.glide.Glide
 
@@ -51,11 +54,29 @@ class ProfilesInfoAdapter(
             tvGender.text = user.gender
             tvState.text = user.location?.state
             tvCountry.text = user.location?.country
+            when (user.profileStatus) {
+                ProfileStatus.ACCEPTED, ProfileStatus.DECLINED -> {
+                    actionsContainer.visibility = View.GONE
+                    tvStatus.text = if (user.profileStatus == ProfileStatus.ACCEPTED) {
+                        context.getString(R.string.accepted)
+                    } else {
+                        context.getString(R.string.declined)
+                    }
+                    tvStatus.visibility = View.VISIBLE
+                }
+
+                else -> {
+                    actionsContainer.visibility = View.VISIBLE
+                    tvStatus.visibility = View.GONE
+                }
+            }
             ivCheck.setOnClickListener {
                 onAccepted.invoke(user)
+                notifyItemChanged(position)
             }
             ivCross.setOnClickListener {
                 onDeclined.invoke(user)
+                notifyItemChanged(position)
             }
         }
     }

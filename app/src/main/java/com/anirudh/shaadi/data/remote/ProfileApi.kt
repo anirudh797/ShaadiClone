@@ -1,6 +1,6 @@
 package com.anirudh.shaadi.data.remote
 
-import com.anirudh.shaadi.data.model.Profiles
+import com.anirudh.shaadi.data.entity.Profiles
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
