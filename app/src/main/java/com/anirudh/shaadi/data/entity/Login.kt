@@ -6,6 +6,6 @@ data class Login(
     val salt: String ="",
     val sha1: String = "",
     val sha256: String = "",
-    val username: String = "",
+    val username: String,
     val uuid: String = ""
 )

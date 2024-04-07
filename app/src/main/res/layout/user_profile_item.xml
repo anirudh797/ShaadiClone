@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
+    app:strokeColor="@color/grey"
     android:layout_margin="@dimen/dp5"
     android:backgroundTint="@color/light_brown"
+    android:elevation="@dimen/dp10"
     android:minHeight="@dimen/dp300"
     android:orientation="vertical"
-    android:padding="@dimen/dp8">
+    android:padding="@dimen/dp8"
+    app:cardCornerRadius="@dimen/dp10">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -55,7 +59,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_name" />
 
         <TextView
-            android:id="@+id/tv_state"
+            android:id="@+id/tv_address"
             style="@style/quantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,19 +71,6 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_gender" />
 
-        <TextView
-            android:id="@+id/tv_country"
-            style="@style/quantity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp4"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:maxLines="2"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_state" />
-
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/actionsContainer"
@@ -89,13 +80,14 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_country">
+            app:layout_constraintTop_toBottomOf="@id/tv_address">
 
             <ImageView
                 android:id="@+id/iv_check"
                 android:layout_width="@dimen/dp0"
                 android:layout_height="@dimen/dp56"
-                android:background="?attr/selectableItemBackground"
+                android:layout_marginHorizontal="@dimen/dp5"
+                android:background="@drawable/custom_ripple"
                 android:contentDescription="@string/image"
                 android:src="@drawable/ic_check"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -106,7 +98,8 @@
                 android:id="@+id/iv_cross"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp56"
-                android:background="?attr/selectableItemBackground"
+                android:layout_marginHorizontal="@dimen/dp5"
+                android:background="@drawable/custom_ripple"
                 android:contentDescription="@string/image"
                 android:src="@drawable/ic_cross"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -120,9 +113,11 @@
             style="@style/text_heading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginVertical="@dimen/dp6"
-            app:layout_constraintTop_toBottomOf="@id/tv_country" />
+            android:background="@color/brown"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/tv_address"
+            tools:visibility="gone" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

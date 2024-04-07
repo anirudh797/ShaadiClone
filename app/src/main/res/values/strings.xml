@@ -5,10 +5,10 @@
     <string name="name">Name :</string>
     <string name="id">Id :</string>
     <string name="userName">%1$s %2$s</string>
+    <string name="address">%1$s, %2$s</string>
     <string name="accepted">ACCEPTED</string>
     <string name="declined">DECLINED</string>
-    <string name="retry">No Profiles Available. Please retry</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="retry">Something went wrong. Please tap here or swipe to try again </string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="image">image</string>
     <string name="profile_matches">Profile Matches</string>

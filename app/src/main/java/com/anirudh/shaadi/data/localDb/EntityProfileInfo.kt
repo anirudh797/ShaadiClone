@@ -24,7 +24,9 @@ data class EntityProfileInfo(
     @ColumnInfo(name = "state")
     val country: String,
     @ColumnInfo(name = "status")
-    val status: ProfileStatus
+    var status: ProfileStatus = ProfileStatus.NONE,
+    @ColumnInfo("email")
+    val email: String,
 ) {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "profileId")

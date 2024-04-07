@@ -1,9 +1,11 @@
 package com.anirudh.shaadi.usecase.util
 
 import com.anirudh.shaadi.data.entity.Location
+import com.anirudh.shaadi.data.entity.Login
 import com.anirudh.shaadi.data.entity.Name
 import com.anirudh.shaadi.data.entity.Picture
 import com.anirudh.shaadi.data.entity.ProfileInfo
+import com.anirudh.shaadi.data.entity.ProfileStatus
 import com.anirudh.shaadi.data.localDb.EntityProfileInfo
 
 
@@ -14,12 +16,14 @@ fun List<EntityProfileInfo>.toProfilesInfoList(): List<ProfileInfo> {
             location = Location(state = it.state, country = it.country),
             name = Name(first = it.firstName, last = it.lastName),
             picture = Picture(large = it.imageUrl, medium = it.imageUrl),
-            profileStatus = it.status
+            profileStatus = it.status,
+            login = Login(username = it.userName),
+            email = it.email
         )
     }
 }
 
-fun List<ProfileInfo>.toEntityProfileInfo(): List<EntityProfileInfo> {
+fun List<ProfileInfo>.toEntityProfileInfoList(): List<EntityProfileInfo> {
     return this.map {
         EntityProfileInfo(
             gender = it.gender ?: "",
@@ -29,7 +33,8 @@ fun List<ProfileInfo>.toEntityProfileInfo(): List<EntityProfileInfo> {
             firstName = it.name?.first ?: "",
             lastName = it.name?.last ?: "",
             userName = it.login?.username ?: "",
-            status = it.profileStatus
+            status = it.profileStatus ?: ProfileStatus.NONE ,
+            email = it.email
         )
     }
 }
@@ -43,6 +48,7 @@ fun ProfileInfo.toEntityProfileInfo(): EntityProfileInfo {
         firstName = name?.first ?: "",
         lastName = name?.last ?: "",
         userName = login?.username ?: "",
-        status = profileStatus
+        status = profileStatus ?: ProfileStatus.NONE,
+        email = email
     )
 }

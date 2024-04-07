@@ -41,23 +41,9 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         viewModel = ViewModelProvider(this, viewModelFactory)[ProfileViewModel::class.java]
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setupClickListeners()
-        setupObservers()
         viewModel.initializeDb(this)
-        viewModel.getProfilesList()
 
     }
-
-    private fun setupClickListeners() {
-        binding.btn.setOnClickListener {
-//            viewModel.showLastSearchResults()
-        }
-    }
-
-    private fun setupObservers() {
-
-    }
-
 
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>

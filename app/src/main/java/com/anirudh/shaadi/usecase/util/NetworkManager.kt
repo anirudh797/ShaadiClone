@@ -3,10 +3,6 @@ package com.anirudh.shaadi.usecase.util
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.net.NetworkCapabilities.NET_CAPABILITY_VALIDATED
-import android.os.Build
-import androidx.core.content.ContextCompat.getSystemService
-
 object NetworkManager {
     /**
      * CHECK WHETHER INTERNET CONNECTION IS AVAILABLE OR NOT

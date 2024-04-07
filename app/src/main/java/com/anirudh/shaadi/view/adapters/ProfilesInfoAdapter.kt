@@ -1,6 +1,5 @@
 package com.anirudh.shaadi.view.adapters
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +13,8 @@ import com.bumptech.glide.Glide
 
 class ProfilesInfoAdapter(
     private val context: Context,
-    private val onAccepted: (ProfileInfo) -> Unit, private val onDeclined: (ProfileInfo) -> Unit
+    private val onAccepted: (ProfileInfo) -> Unit,
+    private val onDeclined: (ProfileInfo) -> Unit
 ) : RecyclerView.Adapter<ProfilesInfoAdapter.ResultsViewHolder>() {
 
 
@@ -45,15 +45,13 @@ class ProfilesInfoAdapter(
         val user: ProfileInfo = profileInfoList[position]
         holder.binding.apply {
             Glide.with(holder.itemView.context).load(user.picture?.large).into(iv)
-            tvName.text =
-                String.format(
-                    context.getString(R.string.userName),
-                    user.name?.first,
-                    user.name?.last
-                )
+            tvName.text = String.format(
+                context.getString(R.string.userName), user.name?.first, user.name?.last
+            )
             tvGender.text = user.gender
-            tvState.text = user.location?.state
-            tvCountry.text = user.location?.country
+            tvAddress.text = String.format(
+                context.getString(R.string.address), user.location?.state, user.location?.country
+            )
             when (user.profileStatus) {
                 ProfileStatus.ACCEPTED, ProfileStatus.DECLINED -> {
                     actionsContainer.visibility = View.GONE

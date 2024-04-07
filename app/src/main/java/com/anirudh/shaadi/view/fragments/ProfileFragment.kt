@@ -51,10 +51,14 @@ class ProfileFragment : Fragment() {
         setupObservers()
         setupAdapter()
         setupClickListeners()
+        viewModel.getProfilesList()
     }
 
     private fun setupClickListeners() {
         binding.retryBtn.setOnClickListener {
+            viewModel.getProfilesList()
+        }
+        binding.swipe.setOnRefreshListener {
             viewModel.getProfilesList()
         }
     }
@@ -71,6 +75,7 @@ class ProfileFragment : Fragment() {
     private fun setupAdapter() {
         profilesInfoAdapter = ProfilesInfoAdapter(requireContext(), onAccept, onDecline)
         binding.recyclerView.apply {
+            itemAnimator = null
             layoutManager = LinearLayoutManager(requireContext(), VERTICAL, false)
             adapter = profilesInfoAdapter
         }
@@ -79,6 +84,7 @@ class ProfileFragment : Fragment() {
     private fun setupObservers() {
 
         viewModel.profilesList.observe(viewLifecycleOwner) {
+            binding.swipe.isRefreshing = false
             if (!it.isNullOrEmpty()) {
                 binding.retryBtn.visibility = View.GONE
                 binding.recyclerView.visibility = View.VISIBLE

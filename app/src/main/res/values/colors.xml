@@ -8,5 +8,6 @@
     <color name="filter_divider_color">#26FFFFFF</color>
     <color name="light_grey">#E6E6E6</color>
     <color name="primary">#F5F6F7</color>
-    <color name="light_brown">#41FB8C00</color>
+    <color name="light_brown">#41FB1500</color>
+    <color name="light_white">#EFE3E3</color>
 </resources>
