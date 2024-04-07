@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.anirudh.shaadi.R
 import com.anirudh.shaadi.databinding.ActivityMainBinding
 import com.anirudh.shaadi.view.fragments.ProfileFragment
-import com.anirudh.shaadi.usecase.viewModel.ProfileViewModel
+import com.anirudh.shaadi.view.viewModel.ProfileViewModel
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -41,8 +41,6 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         viewModel = ViewModelProvider(this, viewModelFactory)[ProfileViewModel::class.java]
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        viewModel.initializeDb(this)
-
     }
 
     @Inject

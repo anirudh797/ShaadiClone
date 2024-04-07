@@ -1,4 +1,4 @@
-package com.anirudh.shaadi.usecase.util
+package com.anirudh.shaadi.domain.util
 
 import com.anirudh.shaadi.data.entity.Location
 import com.anirudh.shaadi.data.entity.Login

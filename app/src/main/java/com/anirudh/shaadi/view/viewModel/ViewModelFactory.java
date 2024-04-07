@@ -1,4 +1,4 @@
-package com.anirudh.shaadi.usecase.viewModel;
+package com.anirudh.shaadi.view.viewModel;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import java.util.Map;

@@ -5,14 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
+import com.anirudh.shaadi.R
 import com.anirudh.shaadi.data.entity.ProfileInfo
 import com.anirudh.shaadi.data.entity.ProfileStatus
 import com.anirudh.shaadi.databinding.FragmentMainBinding
 import com.anirudh.shaadi.view.adapters.ProfilesInfoAdapter
-import com.anirudh.shaadi.usecase.viewModel.ProfileViewModel
+import com.anirudh.shaadi.view.viewModel.ProfileViewModel
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -85,18 +87,22 @@ class ProfileFragment : Fragment() {
 
         viewModel.profilesList.observe(viewLifecycleOwner) {
             binding.swipe.isRefreshing = false
-            if (!it.isNullOrEmpty()) {
-                binding.retryBtn.visibility = View.GONE
-                binding.recyclerView.visibility = View.VISIBLE
-                profilesInfoAdapter.updateList(it)
-            } else {
-                viewModel.handleError()
-            }
+            binding.retryBtn.visibility = View.GONE
+            binding.recyclerView.visibility = View.VISIBLE
+            profilesInfoAdapter.updateList(it)
         }
 
         viewModel.showError.observe(viewLifecycleOwner) {
-            binding.retryBtn.visibility = View.VISIBLE
-            binding.recyclerView.visibility = View.GONE
+            binding.swipe.isRefreshing = false
+            if (it) {
+                Toast.makeText(
+                    requireContext(),
+                    resources.getString(R.string.noData),
+                    Toast.LENGTH_SHORT
+                ).show()
+                binding.retryBtn.visibility = View.VISIBLE
+                binding.recyclerView.visibility = View.GONE
+            }
         }
 
         viewModel.loadingProgressLiveData.observe(viewLifecycleOwner) {

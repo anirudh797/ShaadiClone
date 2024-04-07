@@ -44,7 +44,8 @@ class ProfilesInfoAdapter(
     override fun onBindViewHolder(holder: ResultsViewHolder, position: Int) {
         val user: ProfileInfo = profileInfoList[position]
         holder.binding.apply {
-            Glide.with(holder.itemView.context).load(user.picture?.large).into(iv)
+            Glide.with(holder.itemView.context).load(user.picture?.large)
+                .placeholder(R.drawable.baseline_account_box_24).into(iv)
             tvName.text = String.format(
                 context.getString(R.string.userName), user.name?.first, user.name?.last
             )
