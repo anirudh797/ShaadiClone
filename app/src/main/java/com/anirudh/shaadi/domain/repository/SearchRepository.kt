@@ -3,20 +3,15 @@ package com.anirudh.shaadi.domain.repository
 import android.app.Application
 import android.content.Context
 import android.database.sqlite.SQLiteException
-import android.util.Log
-import androidx.lifecycle.viewModelScope
 import com.anirudh.shaadi.data.entity.ProfileInfo
 import com.anirudh.shaadi.data.entity.ProfileStatus
-import com.anirudh.shaadi.data.entity.Profiles
 import com.anirudh.shaadi.data.localDb.UserMatchesDb
 import com.anirudh.shaadi.data.remote.ProfilesApi
 import com.anirudh.shaadi.domain.util.NetworkManager
 import com.anirudh.shaadi.domain.util.toEntityProfileInfoList
 import com.anirudh.shaadi.domain.util.toProfilesInfoList
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.Response
 import javax.inject.Inject
 
 class SearchRepository @Inject constructor(
@@ -40,11 +35,9 @@ class SearchRepository @Inject constructor(
                     if (result.isSuccessful) {
                         val results = result.body()?.profileInfos
                         saveInDb(results)
-                        Log.d("Anirudh", "$results success")
                         results ?: emptyList()
                     } else {
                         /* if api fails ,try to fetch from Db */
-                        Log.d("Anirudh", "$ success results fetched from Db")
                         fetchFromDb()
                     }
                 } catch (ex: Exception) {
@@ -52,7 +45,6 @@ class SearchRepository @Inject constructor(
                 }
 
             } else {
-                Log.d("Anirudh", "Trying to fetch From DB")
                 /* if network not available,fetch Data from Db */
                 fetchFromDb()
             }
@@ -79,7 +71,6 @@ class SearchRepository @Inject constructor(
         val profilesList = withContext(Dispatchers.IO) {
             try {
                 val items = db.profilesDao().getProfiles()
-                Log.d("Anirudh", "fetch From DB $items")
                 if (items.isNotEmpty()) {
                     items.toProfilesInfoList()
                 } else {
@@ -96,10 +87,8 @@ class SearchRepository @Inject constructor(
         withContext(Dispatchers.IO) {
             db.profilesDao().let {
                 val userProfile = it.getProfileByEmail(profileInfo.email)
-                Log.d("Anirudh", "trying to fetch profile By Email $userProfile")
                 userProfile.status = profileInfo.profileStatus ?: ProfileStatus.NONE
                 it.updateProfileInfo(userProfile)
-                Log.d("Anirudh", "updated profile $userProfile")
             }
         }
     }

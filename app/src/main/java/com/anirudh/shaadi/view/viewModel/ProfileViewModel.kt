@@ -29,9 +29,7 @@ class ProfileViewModel @Inject constructor(
     val profilesList: MutableLiveData<List<ProfileInfo>> = _profilesList
 
     fun getProfilesList() {
-        Log.d("Anirudh", "Outside coroutines")
         viewModelScope.launch(Dispatchers.IO) {
-            Log.d("Anirudh", " search")
             _loadingProgressLiveData.postValue(true)
             val profilesList = searchRepository.getProfiles()
             _loadingProgressLiveData.postValue(false)
