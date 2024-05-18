@@ -13,3 +13,6 @@
 # In case no data available(remote or local) - show a error Message - clickListener added - to retry fetching profiles , also added a swipeRefreshListener for the same
 
 # Handled error scenarios in case of DB , Network Operations by returning data from local Db or an empty List , which will lead to error message for user so that refreshing can be initiated by the user 
+
+![Shaadi1](https://github.com/anirudh797/ShaadiClone/assets/53581159/bc9a7c63-6d7f-412c-a157-228fe5fb9f2a)
+![Shaadi2](https://github.com/anirudh797/ShaadiClone/assets/53581159/c38c5be3-468f-467b-b4b8-e21287fe7c39)
